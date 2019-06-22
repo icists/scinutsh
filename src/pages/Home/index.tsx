@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Board from '../../components/Board';
+import TopicCard from '../../components/TopicCard/index';
 
 const Home: React.FC = () => (
   <div className='home-page'>
@@ -17,13 +18,13 @@ const Home: React.FC = () => (
       <Board/>
       <ul>
         <li>
-          <Link to='topic/1'>Topic 1</Link>
+          <Link to='topic/1'><TopicCard topicNum='1' topic='Topic 1' description='blabla'></TopicCard></Link>
         </li>
         <li>
-          <Link to='topic/2'>Topic 2</Link>
+          <Link to='topic/2'><TopicCard topicNum='2' topic='Topic 2' description='blabla'></TopicCard></Link>
         </li>
         <li>
-          <Link to='topic/3'>Topic 3</Link>
+          <Link to='topic/3'><TopicCard topicNum='3' topic='Topic 3' description='blabla'></TopicCard></Link>
         </li>
       </ul>
     </div>
