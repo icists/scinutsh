@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import Board from '../../components/Board';
+
 const Home: React.FC = () => (
   <div className='home-page'>
     <h1>
@@ -12,6 +14,7 @@ const Home: React.FC = () => (
     <hr/>
     <div className="home-page-topic-cards">
       This section is for topic cards.
+      <Board/>
       <ul>
         <li>
           <Link to='topic/1'>Topic 1</Link>
