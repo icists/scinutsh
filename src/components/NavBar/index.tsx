@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import * as ROUTES from '../../pages/routes';
 
 const Navigation = [
   'Home',
@@ -9,9 +12,11 @@ const Navigation = [
 const NavBar: React.FC = () => (
   <div className="nav-bar">
     <ul>
-    {Navigation.map(navElement => (
-      <li>{navElement}</li>
-    ))}
+      <li>
+        <Link to={ROUTES.HOME}>
+          Home
+        </Link>
+      </li>
     </ul>
   </div>
 )
