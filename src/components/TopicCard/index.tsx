@@ -1,19 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface TopicCardProps {
   topicNum: string;
-  topic: string;
-  description: string;
+  title: string;
+  team: string;
 }
 
 const TopicCard: React.FC<TopicCardProps> = (props: TopicCardProps) => (
   <div className="topic-card">
-    <h1>
-      #{props.topicNum}: {props.topic}
-    </h1>
-    <div className="topic-card-description">
-      <p>{props.description}</p>
-    </div>
+    <Link to={`topic/${props.topicNum}`}>
+      <h5>
+        {props.title}
+      </h5>
+    </Link>
+      <p>
+        {props.team}
+      </p>
   </div>
 );
 
