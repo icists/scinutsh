@@ -14,19 +14,7 @@ const Home: React.FC = () => (
     </div>
     <hr/>
     <div className="home-page-topic-cards">
-      This section is for topic cards.
       <Board/>
-      <ul>
-        <li>
-          <Link to='topic/1'><TopicCard topicNum='1' topic='Topic 1' description='blabla'></TopicCard></Link>
-        </li>
-        <li>
-          <Link to='topic/2'><TopicCard topicNum='2' topic='Topic 2' description='blabla'></TopicCard></Link>
-        </li>
-        <li>
-          <Link to='topic/3'><TopicCard topicNum='3' topic='Topic 3' description='blabla'></TopicCard></Link>
-        </li>
-      </ul>
     </div>
   </div>
 )
