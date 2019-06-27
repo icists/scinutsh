@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Alert } from 'react-bootstrap';
 import { IFirebaseProps, withFirebase } from '../Firebase';
 
 interface INewTopicModalState {
@@ -8,6 +8,7 @@ interface INewTopicModalState {
   team: string;
   progress: string;
   modal: boolean;
+  valid: boolean;
 }
 
 class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState> {
@@ -18,25 +19,42 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
       team: "",
       progress: "",
       modal: false,
+      valid: true,
     };
   }
 
-  addNewTopic = (event: any) => {
+  validateSubmit = () => {
+    const { title, team } = this.state;
+    if (title.length === 0 || team.length === 0) {
+      return false;
+    }
+    return true;
+  }
+
+  addNewTopic = () => {
     const newTopic = this.props.firebase.topics().push();
     const { title, team, progress } = this.state;
-    newTopic.set({
-      id: newTopic.key,
-      title: title,
-      team: team,
-      progress: progress,
-    });
+    if (this.validateSubmit()) {
+      newTopic.set({
+        id: newTopic.key,
+        title: title,
+        team: team,
+        progress: progress,
+      });
 
-    this.handleHide();
+      this.handleHide();
+    }
+    else {
+      this.setState({
+        valid: false,
+      })
+    }
   };
 
   handleHide = () => {
     this.setState({
       modal: false,
+      valid: true,
     })
   }
 
@@ -54,8 +72,16 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
     }))
   }
 
+  onEnterKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      this.addNewTopic();
+    }
+  }
+
   render() {
-    const { modal } = this.state;
+    const { modal, valid } = this.state;
     return (
       <div className="admin-new-topic-modal">
         <Button variant='success' onClick={this.handleShow}>New Topic</Button>
@@ -64,7 +90,7 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
             <Modal.Title>Create New Topic</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <Form onSubmit={this.addNewTopic}>
+          <Form onSubmit={this.addNewTopic} onKeyPress={this.onEnterKeyPress}>
             <Form.Group controlId="topicTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control name="title" onChange={this.onTextInput} type="text" placeholder="Topic Title"/>
@@ -82,6 +108,7 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
           </Form>
           </Modal.Body>
           <Modal.Footer>
+            { !valid ? <Alert color="danger">Please write the title and team of the topic</Alert> : null}
             <Button variant="primary" onClick={this.addNewTopic} type="submit">
               Save
             </Button>

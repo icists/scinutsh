@@ -2,6 +2,7 @@ import React from 'react';
 import { IFirebaseProps, IFirebaseState, withFirebase } from '../../components/Firebase';
 import Table from '../../components/Table';
 import NewTopic from '../../components/NewTopic';
+import { authID } from './auth';
 
 
 interface IAdminState {
@@ -40,6 +41,15 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
         <h1>
           Admin
         </h1>
+        <div className="admin-page-auth">
+          <form className="admin-page-auth-login">
+            <label htmlFor="admin-page-auth-email">Email</label>
+            <input id="admin-page-auth-email" type="email"/>
+            <label htmlFor="admin-page-auth-password">Password</label>
+            <input id="admin-page-auth-password" type="password"/>
+            <button type="submit"> Login </button>
+          </form>
+        </div>
         <div className="admin-page-manage-buttons">
           <div className="row">
             <div className="col">
@@ -61,6 +71,8 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
     );
   }
 }
+
+const authCondition = (authUser: string) => authUser === authID;
 
 const AdminPage = withFirebase(AdminPageBase);
 

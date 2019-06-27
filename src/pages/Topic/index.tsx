@@ -17,7 +17,6 @@ class TopicPage extends React.Component<IFirebaseProps & RouteChildrenProps<{ to
 
   componentDidMount() {
     const { topicID } = this.props.match!.params;
-    console.log(topicID);
     this.props.firebase.topic(topicID).on('value', (snapshot: any) => {
       const data = snapshot.val();
       this.setState({
