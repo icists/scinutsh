@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './index.css'
 
 interface TopicCardProps {
   id: string;
@@ -14,11 +15,10 @@ const TopicCard: React.FC<TopicCardProps> = (props: TopicCardProps) => (
         {props.title}
       </h5>
     </Link>
-      <p>
-        {props.team}
-      </p>
+    <div className="topic-card-team">
+      {props.team}
+    </div>
   </div>
 );
-
 
 export default TopicCard;
