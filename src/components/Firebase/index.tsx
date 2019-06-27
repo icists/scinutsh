@@ -5,5 +5,9 @@ export interface IFirebaseProps {
   firebase: Firebase;
 }
 
+export interface IFirebaseState {
+  firebaseLoaded: boolean;
+}
+
 export { FirebaseContext, withFirebase };
 export default Firebase;

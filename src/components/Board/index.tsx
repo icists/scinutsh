@@ -1,23 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import TopicCard from '../TopicCard';
-import { IFirebaseProps, withFirebase } from '../Firebase';
+import { IFirebaseProps, withFirebase, IFirebaseState } from '../Firebase';
 
 interface IBoardState {
   topics: Topic[];
 }
 
 type Topic = {
+  id: string;
   title: string;
   team: string;
 }
 
-class BoardBase extends React.Component<IFirebaseProps, IBoardState> {
+class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      topics: []
+      topics: [],
+      firebaseLoaded: false,
     };
   }
 
@@ -31,20 +32,22 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState> {
       })
       this.setState({
         topics: collector,
+        firebaseLoaded: true
       })
     })
   }
 
   render() {
-    const { topics } = this.state;
+    const { topics, firebaseLoaded } = this.state;
     return (
       <div className="board container">
         <div className="row">
-          {topics.map((topic, index) => (
+          {firebaseLoaded
+          ? topics.map((topic, index) => (
             <div className="col md-3">
-              <TopicCard topicNum={(index+1).toString()} title={topic.title} team={topic.team}/>
+              <TopicCard id={topic.id} title={topic.title} team={topic.team}/>
             </div>
-          ))}
+          )) : <div>Loading...</div>}
         </div>
       </div>
     )
