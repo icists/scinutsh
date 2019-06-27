@@ -18,7 +18,6 @@ export class Firebase extends React.Component<{}, {}> {
     this.storage = app.storage();
   }
 
-  topics = () => {
-    return this.db.ref('topics/');
-  }
+  topics = () => this.db.ref('topics/');
+  topic = (topicID: string) => this.db.ref(`topics/${topicID}/`);
 }
