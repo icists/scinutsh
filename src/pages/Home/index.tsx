@@ -1,12 +1,11 @@
 import React from 'react';
 
 import Board from '../../components/Board';
+import Promo from './Promo'
 
 const Home: React.FC = () => (
   <div className='home-page container'>
-    <h1 className='home-page-header'>
-      ICISTS 2019 Science in a Nutshell
-    </h1>
+    <Promo />
     <div className='home-page-banner'>
     </div>
     <div className="home-page-intro">
