@@ -9,7 +9,7 @@ interface TopicCardProps {
 
 const TopicCard: React.FC<TopicCardProps> = (props: TopicCardProps) => (
   <div className="topic-card">
-    <Link to={`topic/${props.id}`}>
+    <Link to={`topic/${props.id}`} >
       <h5>
         {props.title}
       </h5>
