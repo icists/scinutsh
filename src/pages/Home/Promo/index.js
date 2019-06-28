@@ -8,7 +8,7 @@ export class Promo extends Component {
                     <div className="col-md-2"></div>
                     <div className="col-md-8">
                         <div>
-                            <p className="font-weight-bold">ICISTS 2019<br />Sience in a Nutshell</p>
+                            <p className="font-weight-bold">ICISTS 2019<br />Science in a Nutshell</p>
                         </div>
                     </div>
                     <div className="col-md-2"></div>
