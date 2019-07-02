@@ -9,6 +9,7 @@ import * as ROUTES from '../../pages/routes';
 import HomePage from '../Home';
 import TopicPage from '../Topic';
 import AdminPage from '../Admin';
+import { withAuthentication } from '../../components/Session';
 
 const App: React.FC = () => {
   return (
@@ -25,4 +26,4 @@ const App: React.FC = () => {
   );
 }
 
-export default App;
+export default withAuthentication(App);

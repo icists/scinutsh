@@ -4,7 +4,8 @@ import { compose } from 'recompose';
 
 import AuthUserContext from "./context";
 import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../../pages/routes';
+import AdminAuth from './AdminAuth';
 
 const withAuthorization = condition => Component => {
   class WithAuthorization extends React.Component {
@@ -12,7 +13,7 @@ const withAuthorization = condition => Component => {
       this.listener = this.props.firebase.auth.onAuthStateChanged(
         authUser => {
           if (!condition(authUser)) { // If the user condition is not validated
-            this.props.history.push(ROUTES.SIGN_IN);
+            this.props.history.push(ROUTES.ADMIN_AUTH);
           }
         },
       );
@@ -25,7 +26,7 @@ const withAuthorization = condition => Component => {
     render() {
       return (
         <AuthUserContext.Consumer>
-          {authUser => condition(authUser) ? <Component {...this.props} /> : null}
+          {authUser => condition(authUser) ? <Component {...this.props} /> : <AdminAuth/>}
         </AuthUserContext.Consumer>
       );
     }

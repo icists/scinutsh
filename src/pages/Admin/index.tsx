@@ -3,6 +3,8 @@ import { IFirebaseProps, IFirebaseState, withFirebase } from '../../components/F
 import Table from '../../components/Table';
 import NewTopic from '../../components/NewTopic';
 import { authID } from './auth';
+import { compose } from 'recompose';
+import { withAuthorization } from '../../components/Session';
 
 
 interface IAdminState {
@@ -33,6 +35,10 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
     })
   }
 
+  onLogoutButtonClick = (event: any) => {
+    this.props.firebase.doSignOut();
+  }
+
 
   render() {
     const { data, firebaseLoaded } = this.state;
@@ -41,15 +47,7 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
         <h1>
           Admin
         </h1>
-        <div className="admin-page-auth">
-          <form className="admin-page-auth-login">
-            <label htmlFor="admin-page-auth-email">Email</label>
-            <input id="admin-page-auth-email" type="email"/>
-            <label htmlFor="admin-page-auth-password">Password</label>
-            <input id="admin-page-auth-password" type="password"/>
-            <button type="submit"> Login </button>
-          </form>
-        </div>
+        <button className="btn btn-primary" onClick={this.onLogoutButtonClick}>Logout</button>
         <div className="admin-page-manage-buttons">
           <div className="row">
             <div className="col">
@@ -72,8 +70,11 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
   }
 }
 
-const authCondition = (authUser: string) => authUser === authID;
+const authCondition = (authUser: any) => authUser != null;
 
-const AdminPage = withFirebase(AdminPageBase);
+const AdminPage = compose(
+  withFirebase,
+  withAuthorization(authCondition),
+)(AdminPageBase);
 
 export default AdminPage;

@@ -27,7 +27,7 @@ class TopicPage extends React.Component<IFirebaseProps & RouteChildrenProps<{ to
   }
 
   render() {
-    const { title, team, progress } = this.state;
+    const { title, team } = this.state;
     if (!this.state.firebaseLoaded) {
       return (
         <div className="topic-page-loading">

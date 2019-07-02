@@ -44,7 +44,7 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
         <div className="row">
           {firebaseLoaded
           ? topics.map((topic, index) => (
-            <div className="col md-3">
+            <div key={topic.id} className="col md-3">
               <TopicCard id={topic.id} title={topic.title} team={topic.team}/>
             </div>
           )) : <div>Loading...</div>}
