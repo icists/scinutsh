@@ -2,6 +2,7 @@ import React from 'react';
 
 import TopicCard from '../TopicCard';
 import { IFirebaseProps, withFirebase, IFirebaseState } from '../Firebase';
+import { discovery } from 'googleapis/build/src/apis/discovery';
 
 interface IBoardState {
   topics: Topic[];
@@ -39,15 +40,25 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
 
   render() {
     const { topics, firebaseLoaded } = this.state;
+    if (!firebaseLoaded) {
+      return (
+        <div className="board">
+          <p id="board-loading">
+            Topics are now loading! Give me a second :)
+          </p>
+        </div>
+      );
+    }
     return (
       <div className="board container">
-        <div className="row">
-          {firebaseLoaded
-          ? topics.map((topic, index) => (
-            <div key={topic.id} className="col md-3">
-              <TopicCard id={topic.id} title={topic.title} team={topic.team}/>
+        <div className="row justify-content-start">
+          {topics.map((topic, index) => (
+            <div className="topic-card-wrapper">
+              <div key={topic.id} className="col-md-2">
+                <TopicCard id={topic.id} title={topic.title} team={topic.team} />
+              </div>
             </div>
-          )) : <div>Loading...</div>}
+          ))}
         </div>
       </div>
     )

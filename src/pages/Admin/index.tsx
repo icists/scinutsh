@@ -2,7 +2,6 @@ import React from 'react';
 import { IFirebaseProps, IFirebaseState, withFirebase } from '../../components/Firebase';
 import Table from '../../components/Table';
 import NewTopic from '../../components/NewTopic';
-import { authID } from './auth';
 import { compose } from 'recompose';
 import { withAuthorization } from '../../components/Session';
 

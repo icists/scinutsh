@@ -15,7 +15,7 @@ export class Firebase extends React.Component<{}, {}> {
   constructor(props: any) {
     super(props)
 
-    app.initializeApp(firebaseConfig)
+    app.initializeApp(firebaseConfig);
     this.db = app.database();
     this.auth = app.auth();
     this.storage = app.storage();

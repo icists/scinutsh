@@ -9,16 +9,16 @@ interface TopicCardProps {
 }
 
 const TopicCard: React.FC<TopicCardProps> = (props: TopicCardProps) => (
-  <div className="topic-card">
-    <Link to={`topic/${props.id}`} >
+  <Link to={`topic/${props.id}`} >
+    <div className="topic-card">
       <h5>
         {props.title}
       </h5>
-    </Link>
-    <div className="topic-card-team">
-      {props.team}
+      <div className="topic-card-team">
+        {props.team}
+      </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default TopicCard;

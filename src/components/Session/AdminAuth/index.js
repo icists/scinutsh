@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { withFirebase } from '../../Firebase';
 import { withAuthentication } from '../../Session';
 import { compose } from 'recompose';
+import * as ROUTES from '../../../pages/routes';
 
 
 class AdminAuth extends React.Component {
@@ -23,10 +23,16 @@ class AdminAuth extends React.Component {
 
   }
 
-  onLoginSubmit = () => {
+  onLoginSubmit = (event) => {
     const { email, password } = this.state;
-    console.log(email, password);
     this.props.firebase.doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({
+          email: "",
+          password: "",
+        });
+        this.props.history.push(ROUTES.ADMIN);
+      })
       .catch(error => {
         this.setState(prevState => ({
           ...prevState,
@@ -36,6 +42,7 @@ class AdminAuth extends React.Component {
   }
 
   render() {
+    const { email, password, error } = this.state;
     return (
       <div className="admin-auth">
         <h3>
@@ -51,7 +58,7 @@ class AdminAuth extends React.Component {
               id="admin-page-auth-email"
               type="email"
               name="email"
-              value={this.state.email}
+              value={email}
               onChange={this.onEmailPasswordChange}
             />
             <label htmlFor="admin-page-auth-password">Password</label>
@@ -59,13 +66,13 @@ class AdminAuth extends React.Component {
               id="admin-page-auth-password"
               type="password"
               name="password"
-              value={this.state.password}
+              value={password}
               onChange={this.onEmailPasswordChange}
             />
             <button type="submit"> Login </button>
           </form>
         </div>
-        { this.state.error ? this.state.error.message : null }
+        { error ? error.message : null }
       </div>
     )
   }
