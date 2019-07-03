@@ -63,7 +63,11 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
         {firebaseLoaded ?
           <div className="admin-page-manage-table">
             <Table header={['Index', 'Title', 'Team', 'Progress', 'Edit']} data={data}/>
-          </div> : <div>Loading...</div>}
+          </div> : 
+          <div className="loading-container">
+              <div className="loading"></div>
+              <div id="loading-text">loading</div>
+          </div> }
       </div>
     );
   }
