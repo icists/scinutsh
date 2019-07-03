@@ -17,10 +17,10 @@ class AdminAuth extends React.Component {
 
   onEmailPasswordChange = (event) => {
     const target = event.currentTarget;
-    this.setState({
-      [target.name] : target.value
-    })
-
+    this.setState(prevState => ({
+      ...prevState,
+      [target.name]: target.value
+    }));
   }
 
   onLoginSubmit = (event) => {
@@ -38,13 +38,15 @@ class AdminAuth extends React.Component {
           ...prevState,
           error: error,
         }));
-      })
+      });
+    
+    event.preventDefault();
   }
 
   render() {
     const { email, password, error } = this.state;
     return (
-      <div className="admin-auth">
+      <div className="admin-auth container">
         <h3>
           Sign In
         </h3>

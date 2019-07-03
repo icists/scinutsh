@@ -24,10 +24,8 @@ code {
   padding: 20px;
 }
 
-.home-page-intro-content {
+.home-page-content {
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
   text-align: left;
 }
 

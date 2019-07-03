@@ -35,9 +35,6 @@ class TableRowBase extends React.Component<IFirebaseProps & IData & ITableRowPro
 
   onEditButtonClicked = (event: React.MouseEvent<HTMLButtonElement>) => {
     const target = event.currentTarget;
-    this.setState({
-      isEditing: this.state.isEditing ? false : true,
-    })
 
     if (target.name === 'Save') {
       const { id } = this.props;
@@ -54,7 +51,12 @@ class TableRowBase extends React.Component<IFirebaseProps & IData & ITableRowPro
         const { id } = this.props;
         this.props.firebase.topic(id).remove();
       }
+      return;
     }
+
+    this.setState({
+      isEditing: this.state.isEditing ? false : true,
+    })
   };
 
   render() {
