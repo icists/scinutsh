@@ -51,7 +51,7 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
     }
     return (
       <div className="board container">
-        <div className="row justify-content-start">
+        <div className="row justify-content-center">
           {topics.map((topic, index) => (
             <div className="topic-card-wrapper">
               <div key={topic.id} className="col-md-2">
