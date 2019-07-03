@@ -11,7 +11,8 @@ interface TopicCardProps {
 const TopicCard: React.FC<TopicCardProps> = (props: TopicCardProps) => (
   <Link to={`topic/${props.id}`} >
     <div className="topic-card">
-      <h5>
+      <div className="upperbar"></div>
+      <h5 className="titles">
         {props.title}
       </h5>
       <div className="topic-card-team">
