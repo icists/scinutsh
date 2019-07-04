@@ -41,10 +41,9 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
     const { topics, firebaseLoaded } = this.state;
     if (!firebaseLoaded) {
       return (
-        <div className="board">
-          <div className="loading-container">
-              <div className="loading"></div>
-              <div id="loading-text">loading</div>
+        <div className="board text-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       );
