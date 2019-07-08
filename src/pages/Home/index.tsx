@@ -10,7 +10,7 @@ const Home: React.FC = () => (
     </div>
     <div className="home-page-intro">
       <div className="row">
-        <div className="col">
+        <div className="col-md-6">
           <h2 className="home-page-header">
             Introduction
           </h2>
@@ -25,7 +25,7 @@ const Home: React.FC = () => (
             </p>
           </div>
         </div>
-        <div className="col">
+        <div className="col-md-6">
           <h2 className="home-page-header">
             Rules
           </h2>
