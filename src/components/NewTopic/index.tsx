@@ -84,7 +84,7 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
     const { modal, valid } = this.state;
     return (
       <div className="admin-new-topic-modal">
-        <Button variant='success' onClick={this.handleShow}>New Topic</Button>
+        <Button variant='success' onClick={this.handleShow} size='sm'>New Topic</Button>
         <Modal show={modal} onHide={this.handleHide}>
           <Modal.Header closeButton>
             <Modal.Title>Create New Topic</Modal.Title>

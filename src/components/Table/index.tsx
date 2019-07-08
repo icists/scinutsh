@@ -1,9 +1,10 @@
 import React from 'react';
 import TableRow from './TableRow';
+import { Data } from '../Firebase/types';
 
 interface ITableProps {
   header: string[];
-  data: any[];
+  data: Data[];
 }
 
 const Table: React.FC<ITableProps> = (props: ITableProps) => (
@@ -21,6 +22,8 @@ const Table: React.FC<ITableProps> = (props: ITableProps) => (
           id={topic.id}
           title={topic.title}
           team={topic.team}
+          introduction={topic.introduction}
+          materials={topic.materials}
           progress={topic.progress}
          />)}
     </tbody>

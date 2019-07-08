@@ -4,10 +4,11 @@ import Table from '../../components/Table';
 import NewTopic from '../../components/NewTopic';
 import { compose } from 'recompose';
 import { withAuthorization } from '../../components/Session';
+import { Data } from '../../components/Firebase/types';
 
 
 interface IAdminState {
-  data: any[];
+  data: Data[];
 }
 
 class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFirebaseState> {
@@ -21,7 +22,7 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
 
   componentDidMount() {
     this.props.firebase.topics().on('value', snapshot => {
-      const collector: any[] = [];
+      const collector: Data[] = [];
       snapshot.forEach(topic => {
         collector.push({
           ...topic.val()
@@ -46,7 +47,13 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
         <h1>
           Admin
         </h1>
-        <button className="btn btn-primary" onClick={this.onLogoutButtonClick}>Logout</button>
+        <div className="text-right">
+          <button
+            className="btn-sm btn-danger"
+            onClick={this.onLogoutButtonClick}>
+            Logout
+          </button>
+        </div>
         <div className="admin-page-manage-buttons">
           <div className="row">
             <div className="col">
@@ -55,14 +62,14 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
             <div className="col"/>
             <div className="col"/>
             <div className="col">
-              <h4> Total: { data.length } topics </h4>
+              <h5> Total: { data.length } topics </h5>
             </div>
           </div>
         </div>
         {/* Tables for admin page  */}
         {firebaseLoaded ?
           <div className="admin-page-manage-table">
-            <Table header={['Index', 'Title', 'Team', 'Progress', 'Edit']} data={data}/>
+            <Table header={['Index', 'Title', 'Team', 'Progress', 'Introduction', 'Materials', 'Edit']} data={data}/>
           </div> : 
           <div className="spinner-border" role="status"></div>}
       </div>

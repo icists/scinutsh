@@ -42,7 +42,7 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
     if (!firebaseLoaded) {
       return (
         <div className="board text-center">
-          <div className="spinner-border" role="status">
+          <div className="loading spinner-border" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </div>
@@ -52,8 +52,8 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
       <div className="board container">
         <div className="row justify-content-center">
           {topics.map((topic, index) => (
-            <div className="topic-card-wrapper">
-              <div key={topic.id} className="col-md-2">
+            <div key={topic.id} className="topic-card-wrapper">
+              <div className="col-md-2">
                 <TopicCard id={topic.id} title={topic.title} team={topic.team} />
               </div>
             </div>

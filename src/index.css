@@ -90,7 +90,7 @@ code {
 
 .topic-page #topic-title {
   text-align: center;
-  padding: 0px;
+  padding: 30px;
 }
 
 .topic-page #topic-team {
@@ -101,6 +101,10 @@ code {
   font-size: 30px;
   padding: 20px;
   text-align: center;
+}
+
+.topic-page-header {
+  margin-top: 40px;
 }
 
 .board #board-loading {
@@ -116,4 +120,9 @@ code {
   background-position: center;
   background-attachment: fixed;
   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loading {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

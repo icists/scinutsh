@@ -11,6 +11,8 @@ class TopicPage extends React.Component<IFirebaseProps & RouteChildrenProps<{ to
       title: "",
       team: "",
       progress: "",
+      introduction: "",
+      materials: [],
       firebaseLoaded: false,
     }
   }
@@ -27,15 +29,14 @@ class TopicPage extends React.Component<IFirebaseProps & RouteChildrenProps<{ to
   }
 
   render() {
-    const { title, team } = this.state;
+    const { title, team, introduction, materials } = this.state;
+    console.log(materials);
     if (!this.state.firebaseLoaded) {
       return (
-        <div className="topic-page container">
-          <p id="topic-page-loading">
-            Loading...
-          </p>
+        <div className="topic-page container text-center">
+          <div className="loading spinner-border" role="status"></div>
         </div>
-      )
+      );
     }
 
     return (
@@ -49,12 +50,49 @@ class TopicPage extends React.Component<IFirebaseProps & RouteChildrenProps<{ to
           </h4>
         </div>
         <div className="topic-page-intro">
-          <h2>Introduction</h2>
-          <p>This is a awesome topic!</p>
+          <h2 className="topic-page-header">Introduction</h2>
+          {introduction
+            ? introduction.split('\n').map((phrase, index) => (
+                <p key={index}>{phrase}</p>
+              ))
+            : <div className="alert alert-danger" role="alert">
+                <h3 className="alert-heading">
+                  No Introduction Uploaded
+                </h3>
+              <p>No introduction is uploaded :(</p>
+              <hr />
+              <p>Please contact the adminstrator. We are sorry.</p>
+              </div>}
         </div>
         <div className="topic-page-materials">
-          <h2>Materials</h2>
-          <p>Here are the materials</p> 
+          <h2 className="topic-page-header">Materials</h2>
+          <table className="topic-page-materials-table table">
+            <thead>
+              <tr>
+                <td>Name</td>
+                <td>Content</td>
+                <td>Link</td>
+              </tr>
+            </thead>
+            <tbody>
+              {materials ? materials.map(value => (
+                <tr key={value.name}>
+                  <td>{value.name}</td>
+                  <td>{value.content}</td>
+                  <td><a href={value.link}>{value.link}</a></td>
+                </tr>
+              )) : null}
+            </tbody>
+          </table>
+          {materials!.length !== 0
+            ? null : <div className="alert alert-danger" role="alert">
+              <h3 className="alert-heading">
+                No Materials Uploaded
+                </h3>
+              <p>No Materials are uploaded :(</p>
+              <hr />
+              <p>Please contact the adminstrator. We are sorry.</p>
+            </div>}
         </div>
       </div>
     );
