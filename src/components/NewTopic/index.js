@@ -1,18 +1,10 @@
 import React from 'react';
 
 import { Modal, Button, Form, Alert } from 'react-bootstrap';
-import { IFirebaseProps, withFirebase } from '../Firebase';
+import { withFirebase } from '../Firebase';
 
-interface INewTopicModalState {
-  title: string;
-  team: string;
-  progress: string;
-  modal: boolean;
-  valid: boolean;
-}
-
-class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState> {
-  constructor(props: any) {
+class NewTopicModal extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
       title: "",
@@ -32,9 +24,9 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
   }
 
   addNewTopic = () => {
-    const newTopic = this.props.firebase.topics().push();
     const { title, team, progress } = this.state;
     if (this.validateSubmit()) {
+      const newTopic = this.props.firebase.topics().push();
       newTopic.set({
         id: newTopic.key,
         title: title,
@@ -64,7 +56,7 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
     })
   }
 
-  onTextInput = (event: any) => {
+  onTextInput = event => {
     const target = event.currentTarget;
     this.setState(prevState => ({
       ...prevState,
@@ -72,7 +64,7 @@ class NewTopicModal extends React.Component<IFirebaseProps, INewTopicModalState>
     }))
   }
 
-  onEnterKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
+  onEnterKeyPress = event => {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();

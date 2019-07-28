@@ -35,6 +35,10 @@ class AdminPageBase extends React.Component<IFirebaseProps, IAdminState & IFireb
     })
   }
 
+  componentWillUnmount() {
+    this.props.firebase.topics().off();
+  }
+
   onLogoutButtonClick = (event: any) => {
     this.props.firebase.doSignOut();
   }

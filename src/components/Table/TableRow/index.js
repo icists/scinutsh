@@ -1,18 +1,9 @@
 import React from 'react';
-import { IFirebaseProps, withFirebase } from '../../Firebase';
-import { Data } from '../../Firebase/types';
+import { withFirebase } from '../../Firebase';
 import AdminViewer from '../AdminViewer';
 
-interface ITableRowState {
-  isEditing: boolean;
-}
-
-interface ITableRowProps {
-  index: number;
-}
-
-class TableRowBase extends React.Component<IFirebaseProps & Data & ITableRowProps, Data & ITableRowState> {
-  constructor(props: any) {
+class TableRowBase extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
       ...this.props,
@@ -20,7 +11,7 @@ class TableRowBase extends React.Component<IFirebaseProps & Data & ITableRowProp
     }
   }
 
-  onInformationChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  onInformationChanged = event => {
     const target = event.currentTarget;
     this.setState(prevState => ({
       ...prevState,
@@ -28,7 +19,7 @@ class TableRowBase extends React.Component<IFirebaseProps & Data & ITableRowProp
     }));
   }
 
-  onEditButtonClicked = (event: React.MouseEvent<HTMLButtonElement>) => {
+  onEditButtonClicked = event => {
     const target = event.currentTarget;
 
     if (target.name === 'Save') {

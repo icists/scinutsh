@@ -1,20 +1,10 @@
 import React from 'react';
 
 import TopicCard from '../TopicCard';
-import { IFirebaseProps, withFirebase, IFirebaseState } from '../Firebase';
+import { withFirebase } from '../Firebase';
 
-interface IBoardState {
-  topics: Topic[];
-}
-
-type Topic = {
-  id: string;
-  title: string;
-  team: string;
-}
-
-class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseState> {
-  constructor(props: any) {
+class BoardBase extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       topics: [],
@@ -24,16 +14,16 @@ class BoardBase extends React.Component<IFirebaseProps, IBoardState & IFirebaseS
 
   componentDidMount() {
     this.props.firebase.topics().on('value', snapshot => {
-      const collector: any[] = [];
+      const collector = [];
       snapshot.forEach(topic => {
         collector.push({
           ...topic.val()
         })
-      })
+      });
       this.setState({
         topics: collector,
         firebaseLoaded: true
-      })
+      });
     })
   }
 

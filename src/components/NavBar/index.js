@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../pages/routes';
 
-const NavBar: React.FC = () => (
+const NavBar = () => (
   <nav className="navbar navbar-expand-md navbar-light bg-light">
     <a className="navbar-brand" href={ROUTES.HOME}>Science in a Nutshell</a>
     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

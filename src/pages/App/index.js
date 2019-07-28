@@ -11,7 +11,7 @@ import TopicPage from '../Topic';
 import AdminPage from '../Admin';
 import { withAuthentication } from '../../components/Session';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="App">
       <HashRouter>
@@ -22,6 +22,9 @@ const App: React.FC = () => {
           <Route path={ROUTES.ADMIN} component={AdminPage}/>
         </Switch>
       </HashRouter>
+      <div className="footer text-center">
+        Bongjun Jang, ICISTS Division of Tech & Design
+      </div>
     </div>
   );
 }
